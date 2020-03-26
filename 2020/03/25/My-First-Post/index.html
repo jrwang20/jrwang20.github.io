@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>My First Post | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今日内容：  Junit单元测试 反射 注解  Junit单元测试Junit测试概述测试分为黑盒测试和白盒测试对于黑盒测试来说，有一个input和output，具体如何从input到output的这样一个转换逻辑就在黑盒子内部，只需要进行输入然后查看输出是否符合要求即可总之，黑盒测试就是，不需要写代码，直接给输出值，看程序是否能够输出期望的值而白盒测试是需要写代码的，更关注程序具体的执行流程，更有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My First Post">
+<meta property="og:url" content="http://yoursite.com/2020/03/25/My-First-Post/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今日内容：  Junit单元测试 反射 注解  Junit单元测试Junit测试概述测试分为黑盒测试和白盒测试对于黑盒测试来说，有一个input和output，具体如何从input到output的这样一个转换逻辑就在黑盒子内部，只需要进行输入然后查看输出是否符合要求即可总之，黑盒测试就是，不需要写代码，直接给输出值，看程序是否能够输出期望的值而白盒测试是需要写代码的，更关注程序具体的执行流程，更有">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-26T02:06:05.000Z">
+<meta property="article:modified_time" content="2020-03-26T02:25:59.926Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-My-First-Post" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/25/My-First-Post/" class="article-date">
+  <time datetime="2020-03-26T02:06:05.000Z" itemprop="datePublished">2020-03-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      My First Post
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今日内容：</p>
+<ol>
+<li>Junit单元测试</li>
+<li>反射</li>
+<li>注解</li>
+</ol>
+<h1 id="Junit单元测试"><a href="#Junit单元测试" class="headerlink" title="Junit单元测试"></a>Junit单元测试</h1><h2 id="Junit测试概述"><a href="#Junit测试概述" class="headerlink" title="Junit测试概述"></a>Junit测试概述</h2><p>测试分为黑盒测试和白盒测试<br>对于黑盒测试来说，有一个input和output，具体如何从input到output的这样一个转换逻辑就在黑盒子内部，只需要进行输入然后查看输出是否符合要求即可<br>总之，黑盒测试就是，不需要写代码，直接给输出值，看程序是否能够输出期望的值<br>而白盒测试是需要写代码的，更关注程序具体的执行流程，更有技术含量<br>Junit测试就是白盒测试</p>
+<p>比如现在有一个<code>Calculator</code>类，类的内部提供了一些方法，希望对这些方法进行测试<br>一般的测试方法就是，新开一个<code>CalculatorTest</code>类，专门用来测试；在<code>CalculatorTest</code>类的内部添加一个main方法，在main方法内部创建<code>Calculator</code>类的一个对象，然后使用这个对象调用希望测试的方法，传入一些参数再看看输出的结果是否符合期望<br>这种传统方式进行测试就非常不方便，因为需要重新开一个测试类，然后一个main方法只能运行一次，一个测试类只能有一个main方法<br>因此就需要使用Junit来进行“单元测试”</p>
+<h2 id="Junit使用步骤"><a href="#Junit使用步骤" class="headerlink" title="Junit使用步骤"></a>Junit使用步骤</h2><p>Junit使用步骤</p>
+<ol>
+<li>定义一个测试类（测试用例）<br> <strong>建议</strong><ol>
+<li>测试类名：被测试的类名+Test，比如<code>CalculatorTest</code></li>
+<li>包名：xxx.xxx.xx.test，比如<code>cn.itcast.test</code></li>
+</ol>
+</li>
+<li>定义测试方法：可以独立运行<br> <strong>建议</strong><ol>
+<li>方法名：test+测试的方法名，比如测试add()方法的测试方法是testAdd()</li>
+<li>返回值：void，测试方法不建议有返回值，因为不需要返回值，测试方法是独立运行并且没有人会调用它，只需要打印出来即可</li>
+<li>参数列表：空参数，同样是因为不需要被调用</li>
+</ol>
+</li>
+<li>在测试方法上添加一个annotation注解<code>@Test</code>，就可以保证方法独立运行了</li>
+<li>导入Junit的依赖环境，也就是添加Junit到classpath当中，然后就可以进行测试了</li>
+</ol>
+<p><strong>【总结】</strong><br>使用Junit进行单元测试，就是新建一个平行的测试包，然后在内部定义测试类和测试方法，并且在测试方法上添加注解@Test，测试方法不应该有返回值和参数</p>
+<p>Junit框架的判定测试结果就是，红色代表失败，绿色代表成功；但是如果仅仅是在测试方法中对待测试的方法进行调用然后打印出结果，其实就相当于是用肉眼去查看结果是否符合要求，这样的话只要不出现异常，那么测试结果都是绿色的<br>Junit提供了“断言”操作，也就是<code>Assert</code>，通过使用这个类提供的方法，就可以直接对比期望值和真实值了，比如这样：<br><code>Assert.assertEquals(expected, result);</code><br>而如果断言通过，result正好就是expected的，那么结果就是绿色，否则就是红色</p>
+<h2 id="Junit的-Before和-After"><a href="#Junit的-Before和-After" class="headerlink" title="Junit的@Before和@After"></a>Junit的@Before和@After</h2><p>在Junit框架中，在执行测试程序中，有很多代码都是重复的操作<br>比如一些涉及IO的操作中，可能会需要申请资源和释放资源，如果很频繁的做这些工作就会显得十分冗余</p>
+<p>在Junit的测试类当中，经常会在所有单元测试方法之前定义一个<code>init()</code>方法<br>这个init()方法就是一个初始化的方法，用于自愿申请，所有测试方法在执行之前都会统一执行该方法；定义好这个init()方法后，只需要在上面添加注解<code>@Before</code>即可</p>
+<p>与init()方法对应的，在所有单元测试之后都会有一个<code>close()</code>方法<br>这个close()方法就是一个释放资源的方法，在所有测试方法执行完后，都会自动执行该方法；定义好这个方法后，在上面添加注解<code>@After</code>即可</p>
+<p><strong>【总结】</strong><br>在测试类当中，可以添加init()和close()方法，并且分别添加@Before或@After注解<br>那么添加注解后，在单元测试执行前后，无论发生什么，这两个方法都会执行，因此也被用在一些涉及IO流操作上</p>
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h2 id="反射的概述"><a href="#反射的概述" class="headerlink" title="反射的概述"></a>反射的概述</h2><p>反射是框架设计的灵魂<br>框架是一些半成品的软件，也就是说本来已经有一些代码，但是不能独立运行；开发人员使用框架，在框架基础上进行软件的开发，从而能够简化编码；也就是说框架本身已经为开发人员解决了很多前期基础项目搭建了<br>那么为了开发一个框架，反射就是一个很重要的内容；当然使用框架的本身是不需要了解太多反射的</p>
+<p>反射就是，将类的各个组成部分封装为其他对象，这就是反射机制<br>Java代码在计算机中一共经历了三个阶段：</p>
+<ol>
+<li>在编写完毕java程序后，实际上就相当于是完成了.java文件；经过javac进行编译后，.java文件就被编译成了.class文件，这也叫做字节码文件也就是Java Bytecode<br>字节码文件内部有三个部分，第一部分是成员变量、第二部分是构造方法、第三部分是成员方法<br>以上就是Java代码在计算机上经历的第一个阶段，被叫做Source源代码阶段，因为不管是.java还是.class文件，都被存储在硬盘上</li>
+<li>当.java文件被创建好以后，实际上就相当于这个文件内部的这个Java Class被创建好了，因此就可以利用这个Java Class来创建对象了<br>这其实是Java代码在计算机上经历的第三个阶段，也就是Runtime阶段，因为Java对象都是存在于内存之上的</li>
+<li>那么希望.class的bytecode字节码文件能够变成Java对象，也就是说需要把硬盘上的字节码文件加载到内存当中，这个用来夹在字节码到内存中的工具，就叫做ClassLoader类加载器；类加载器对应Java里面的一个ClassLoader对象；那么希望在内存当中，希望能够用一个对象来描述bytecode字节码文件，这个对象就叫做Class类的对象；也就是有一个叫做Class的Class，它的对象就是专门来表示描述bytecode字节码文件的共同特征和行为；这是因为，不管是什么字节码文件，都会有一些共同的属性，比如他们都有成员变量、构造方法、成员方法；因此这些共有的内容都分别被封装为不同的对象，比如所有的成员变量就被装在一个Field[]数组中，所有的构造方法就被装在了Constructor[]数组中，所有的成员方法就被装在了Method[]数组中；以上这些内容就构造成了Class类，而每一个字节码文件就成为了Class类的对象；那么通过Class类的对象的一些行为，就可以创建真正存在于内存当中的Java对象了；这以上的阶段就是Java程序在计算机中的第二个阶段，也就是Class类对象阶段</li>
+</ol>
+<p>因此，反射机制就是，把一个类的各个组成部分，像第二阶段里描述的那样，封装起来成为一个一个对象/对象数组</p>
+<p>反射机制的好处就是</p>
+<ol>
+<li>可以在程序运行过程中去操作这些对象<br>在程序运行过程中操作这些对象，也就是一些获取或者设置的操作<br>比如在IDEA中开发程序，在写程序的时候写了一个String类型的对象，那么就会即时弹出一大堆可以使用的方法；这个现象背后的机制，其实就是反射；也就是说，在IDEA这个程序运行的时候，出现了一个String对象，那么就把String对象的字节码文件加载到内存中，也就是Class类对象当中；由于Class类对象对String这个类的成员方法已经都被装在了Method[]数组中，因此直接从中就可以获取到各个方法</li>
+<li>可以解耦，降低程序的耦合性，提高程序的可扩展性</li>
+</ol>
+<ul>
+<li>获取字节码Class对象的三种方式<br>反射是将一个类的组成部分封装成一个个对象，为了获取和操作这些对象，最关键的就是把字节码bytecode文件给加载封装成Class类的对象<br>获取Class类的对象一共有三种方式，分别对应着Java程序在计算机中经历的三个阶段：</li>
+</ul>
+<ol>
+<li>如果Java代码在第一个阶段，说明Java只是字节码文件并没有进内存，因此就首先需要加载到内存当中<br>这里使用的方法是：Class.forName(“全类名”)，将字节码文件加载进内存返回Class类对象</li>
+<li>如果Java代码已经成为字节码文件并进入了内存，也就是说已经处于第二阶段，那么就不需要加载而只需要获取这个类的对象即可；而现在又没有创建这个类的对象，在第二阶段中只拥有类名，因此就需要通过类名来进行获取<br>这里使用的方法是：类名.class，通过类名的class属性即可</li>
+<li>如果已经处于第三阶段，已经拥有了这个类创造的对象的话，那么只需要使用这个对象调用getClass()方法，就可以获取到这个对象所属的类的Class类对象，这个getClass()方法是继承自Object当中的<br>这里使用的方法是：对象.getClass()，通过所有对象的共同方法获取</li>
+</ol>
+<p>以上这三种方式获取到的Class对象都是同一个对象，这是因为同一个字节码bytecode文件(XXX.class)在一次程序运行过程中，只会被加载一次；而每一个字节码文件都不相同，因此不同的类对应的Class对象就不同</p>
+<p><strong>【总结】</strong><br>一共有三种方式获取Class类对象<br>1）    Class.forName(“全类名”)，多用于配置文件，这个方法将类名定义在配置文件中，读取文件，加载类<br>2）    类名.class，多用于参数的传递<br>3）    对象.getClass()，多用于对象的获取Class的方式<br>以上这三种方式获取到的Class对象都是同一个对象</p>
+<h2 id="Class类的对象功能概述"><a href="#Class类的对象功能概述" class="headerlink" title="Class类的对象功能概述"></a>Class类的对象功能概述</h2><p>在通过以上三种方式获取了Class类对象后，就可以使用Class类提供的方法进行各种操作了<br>由于Class类的对象实际上是对Java字节码文件的一种封装，也就是把Java类的不同部分封装成一个Class类对象，因而Class类对象就包含着一个类的成员变量、构造方法、成员方法；所以对于一个Class类的对象来说，最主要的功能就是获取这个对象所代表的类的各个成员</p>
+<p>Class类对象的获取功能</p>
+<ol>
+<li><p>获取成员变量<br>Field[] getFields()<br>Field getField(String name)<br>Field[] getDeclaredFields()<br>Field getDeclaredField(String name)</p>
+</li>
+<li><p>获取构造方法<br>Constructor<?>[] getConstructors()
+Constructor<T> getConstructor(Class<?>… parameterTypes)<br>Constructor<T> getDeclaredConstructor(Class<?>… parameterTypes)
+Constructor<?>[] getDeclaredConstructors()</p>
+</li>
+<li><p>获取成员方法<br>Method[] getMethods()<br>Method getMethod(String name, Class<?>… parameterTypes)
+Method[] getDeclaredMethods()
+Method getDeclaredMethod(String name, Class>?>… parameterTypes)</p>
+</li>
+<li><p>获取类名<br>String getName()</p>
+</li>
+</ol>
+<p>以上就是几组关于“获取”的方法，可见当拥有了某一个类所对应的Class类的对象后，就可以通过这个Class类对象获取各个信息</p>
+<h2 id="获取Field"><a href="#获取Field" class="headerlink" title="获取Field"></a>获取Field</h2><p>利用Class类对象获取Field，就可以直接利用上述这相关的四个方法</p>
+<ol>
+<li>Field[] getFields()：这个方法可以获取到所有public修饰的成员变量</li>
+<li>Field getField(String name)：这个方法是获取指定的public修饰的成员变量</li>
+</ol>
+<p>在获取到Class类对象对应的Class的某个或某些成员变量之后，就可以对其进行一些操作，这些成员变量是都是Field类的对象，那么Field类就提供了这两个方法</p>
+<ol>
+<li>void set(Object obj, Object value);</li>
+<li>Object get(Object obj);<br>这两个方法分别对应着对该成员变量的设置值操作和获取值操作</li>
+</ol>
+<p>这里要注意，set和get方法不同于一般的Java类中的getter和setter；一般的getter和setter是由当前类的对象进行调用来获取内部的fields的；而这里则是由Field本身进行调用的，所以不管是get还是set方法，参数都会有一个Object，这个Object其实就是当前这个Field所属于的对象<br>比如现在有一个Person对象per，而Person类中的一个Field是age，已经通过反射获取到了；那么希望改变per对象的age变量，当然可以用per对象的setter，但是也可以使用age的set方法：age.set(per, 18);<br>这就相当于是，对age这个Field来说，把它在per对象中的value改为18</p>
+<ol start="3">
+<li>Field[] getDeclaredFields()：这个方法可以获取到所有成员变量</li>
+<li>Field getDeclaredField(String name)：这个方法可以获取到指定的成员变量<br>对于以上这两个方法，可以不考虑成员变量的access修饰符，而直接获取到非public的成员变量<br>Field sex = personClass.getDeclaredField(“sex”);</li>
+</ol>
+<p>但是通过这两个方法获取到的非public成员变量，虽然可以以Field对象的形式存在，但是并不能直接使用get和set方法对某个对象的该变量进行设置，这时就应该考虑这样的解决方案<br>sex.setAccessible(true);<br>这行代码的意思就是，忽略访问权限修饰符的安全检查，也就是无视权限暴力反射</p>
+<p><strong>【总结】</strong><br>对于一个Class类的对象，可以使用四个方法获取到public或全部的成员变量<br>获取到的成员变量以Field类的对象形式存在<br>对于这些Field类对象，可以使用set方法设置值、get方法获取值<br>如果这个Field类对象不是public的，就不能直接使用set和get方法，而应该首先使用setAccessible()方法，忽略访问权限的限制，进行暴力反射</p>
+<h2 id="获取Constructor"><a href="#获取Constructor" class="headerlink" title="获取Constructor"></a>获取Constructor</h2><p>获取Constructor同样可以使用以上四种方法，前两种方法分别获取public的Constructor，后两种则是全部获取<br>这里需要注意的是，用来区分不同的Constructor并不是想成员变量那样的变量名，而是Constructor的参数，因此对于获取指定Constructor的方法，它的参数就应该传入希望获取到的Constructor的参数列表才可以，即：<br>personClass.getConstructor(String.class, int.class)<br>以上就是可以获取到指定String和int参数的personClass对象所对应的类的构造方法</p>
+<p>在获取到了表示该类的构造方法的对象后（该对象以Constructor类的对象形式存在），就可以使用它来做一些事情了；由于这个对象表示的是Constructor，而一个Constructor最重要的功能就是创建该类的对象，所以获取到Constructor对象后，也可以用来创建对象<br>T newInstance(Object… initargs);<br>该方法就是由一个Constructor类的对象进行调用，内部的参数列表就是在正常调用构造方法的时候所应该传入的参数；当然，这里传入的参数应该和创建该Constructor类对象时所传入的参数相匹配才可以，因为该Constructor类对象代表的是拥有某些特定参数的特定的一个构造方法</p>
+<p>这里注意，如果创建出来的Constructor类对象在创建时传入的仅仅是空参数，那么这个Constructor类对象代表的就是一个空参数的构造方法；然后当然可以使用这个Constructor类对象调用newInstance创建对象；不过对于这种情况，也可以直接使用Class类对象，也就是调用getConstructor()方法创建Constructor类对象的Class类对象，来直接调用newInstance()方法</p>
+<p><strong>【总结】</strong><br>对于一个Class类的对象，可以通过这四种方法获取Constructor类的对象，这些对象都分别对应着该Class类的对象所对应的类的不同构造方法<br>利用这些代表着不同构造方法的Constructor类的对象，可以使用newInstance()方法来创建对象，传入的参数必须和该Constructor类的对象创建的时候传入的参数相匹配</p>
+<h2 id="获取Method"><a href="#获取Method" class="headerlink" title="获取Method"></a>获取Method</h2><p>获取某一个类的成员方法，也可以使用该类的Class类的对象调用相关的四个方法，返回一个或一些Method类的对象，分别表示这个类的各个成员方法；而不带Declared的方法表示获取public成员方法，带Declared的方法则表示获取所有成员方法</p>
+<p>对于getMethod()方法，需要传入的参数就是方法名和参数列表，这些参数就代表着某个方法的signature，比如<br>Method setAgeMethod = personClass.getMethod(“setAge”, int.class);<br>这样获取到的setAgeMethod方法，就可以表示Person类中的setAge(int age)方法了</p>
+<p>那么获取到Method类的对象后，由于这个对象就表示着一个成员方法，因此它的功能就是执行方法；Method类提供了invoke()方法，以供表示成员方法的Method类的对象调用，来进行执行；比如setAgeMethod这个表示setAge方法的Method类对象，它的调用方式就是这样：<br>setAgeMethod.invoke(person, 18);<br>这里就表示，对于一个Person类的对象person，调用setAge方法，传入的参数为18，其实和person.setAge(18)的功能是完全一样的；<br>而invoke也会有返回值，这和调用invoke方法的Method类的对象所表示的成员方法是否有返回值有关</p>
+<p><strong>【总结】</strong><br>对于一个Class类的对象，可以通过这四种方法获取Method类的对象，它们分别表示该Class类对象所对应的类的成员方法<br>在获取到这些表示某一个类的成员方法的Method类对象后，只需要有一个该类的对象，就可以利用Method类对象调用invoke方法，把该类的对象和可能存在的参数传入，实现成员方法的执行</p>
+<h2 id="反射的案例"><a href="#反射的案例" class="headerlink" title="反射的案例"></a>反射的案例</h2><p>以上对反射的使用，仅仅停留在反射的使用层面，也就是如何通过三种方式获取到一个表示某一个类的Class类的对象；然后如何通过这个Class类的对象获取到它所表示的类的成员变量、成员方法、构造方法；成员变量由Field类的对象表示，可以进行获取和设置；成员方法由Method类的对象表示，可以进行执行；构造方法由Constructor类的对象表示，可以创建对象</p>
+<p>那么以上的使用，仅仅是通过另一种方式，复制了一般使用的一些基本操作，反射的优势究竟在哪里呢？</p>
+<p>需求：写一个框架，该框架可以帮助创建任意类的对象，并执行其中任意方法<br>比如现在有一个类是Person类，类内部有很多getter和setter方法；现在就希望有一个框架，可以帮助创建这个类的对象并且执行其中的方法；而既然是一个框架，并且把它看作是一个类的话，一般来说，如果希望这个框架类能够创建Person类对象并执行Person类的方法，传统的方式就是在这个框架类的主方法当中，new一个Person类的对象，然后调用这个Person类的方法即可，这时最传统的方式</p>
+<p>但是问题在于，对于一个框架（框架类）来说，是不希望在使用它的过程中改变该类的任何代码的，在这个前提下，才可以创建任意类的对象、执行任意方法；比如对于同一个框架类，现在的需求是创建Person对象，以后的需求就可能是创建Student对象，那么在不同的需求下，框架类的主方法可能就需要创建不同的类的对象，这样就违背了不改变框架类代码的前提<br>因此可以使用反射来完成这样的需求</p>
+<p>实现写以上框架的需求，需要配置文件和反射技术<br>实现步骤：</p>
+<ol>
+<li>将需要创建的对象的全类名和需要执行的方法定义在配置文件中</li>
+<li>在程序中加载读取配置文件</li>
+<li>使用反射技术来加载类文件进内存</li>
+<li>创建对象</li>
+<li>执行方法<br>也就是说，在配置文件中设置好类和方法，然后在框架类中利用反射技术来进行读取和加载，然后再去使用</li>
+</ol>
+<p>在配置好配置文件之后，就可以在框架类中读取配置文件中配置好的类名和方法名了；在框架类中读取配置文件的方法如下：</p>
+<ol>
+<li>获取框架类的class字节码文件对应的Class类对象（ReflectionFrame.class），然后利用该对象调用classLoader()方法，获取它的类加载器；</li>
+<li>利用框架类的类加载器classLoader，调用getResourceAsStream(“pro.properties”)方法，获取到在class目录下的配置文件的字节输入流</li>
+<li>创建一个Properties对象，调用load()方法，参数传入刚刚获取到的配置文件的字节输入流，这样就可以把配置文件所包含的信息传给这个Properties对象了</li>
+<li>利用load()完毕的Properties对象，调用getProperty(“className”)方法获取配置文件中指定好的类，调用getProperty(“methodName”)方法获取配置文件中指定好的方法；也就是说getProperty()可以通过传入key来获取到配置文件中的value，都是以字符串的形式</li>
+</ol>
+<p>完成了以上步骤后，实际上就完成了配置文件信息的读取，配置文件信息就以字符串的形式包含在了框架类当中<br><strong>【注】</strong><br>以上步骤中，前两步实际上是希望在框架类当中获取到当前class目录下的配置文件，并且以流的方式表示在框架类当中；后面的步骤就是在获取配置文件的流之后，进一步转化成为可以专门表示配置文件的Properties类对象，然后通过这个对象去获取配置文件中的配置信息；而对于前两个步骤，其实只是为了获取表示配置文件的流而已，当然也可以简单地采用最基本的方式，即直接创建一个FileInputStream对象，绑定这个配置文件的绝对路径或者相对路径，然后再传入load()方法，只不过使用现在的这种方式更加方便，不用考虑路径的变化</p>
+<p>在获取完毕配置信息，也就是全类名和方法名后，就可以利用反射技术进行创建该类对象以及调用该类方法了，步骤如下：</p>
+<ol>
+<li>通过全类名，使用Class.forName(“全类名”)的方式，加载类进内存，获取到配置文件中声明的类的Class对象</li>
+<li>利用获取到的Class类的对象，调用newInstance()方法，返回一个在配置文件中声明的类的对象</li>
+<li>利用获取到的Class类的对象，调用getMethod(“方法名”)方法，返回一个以Method形式存在的表示配置文件中声明的方法的对象</li>
+<li>利用该Method对象调用invoke()方法，传入第二部中创建的该类的对象，执行配置文件中声明的方法</li>
+</ol>
+<p>在完成了以上步骤之后，实际上可以发现框架类中并没有任何关于某一个特定类的代码，全部是由配置文件所获取到的；因此，只需要改动配置文件中的className和methodName，就可以把指定的类从Person变成Student，或者把指定的方法从eat变为sleep；不更改代码、只更改配置文件的话，在项目大的情况下就更方便一些，并且使项目的扩展性更强</p>
+<p><strong>【总结】</strong><br>Java的反射技术被大规模使用在框架的搭建上，使用反射技术可以在框架相关的类的内部，通过读取配置文件所包含的信息的方式，获取到开发者指定的类和方法，并且创建指定类的对象、调用指定的方法；读取配置文件信息的关键是在于把当前class目录下的配置文件转化成IO输入流，然后整合到Properties对象当中从而能够进行获取，本质还是IO流读取文件</p>
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="注解的概念"><a href="#注解的概念" class="headerlink" title="注解的概念"></a>注解的概念</h2><p>注解和注释类似，注释是用文字去描述程序代码，帮助开发者理解；而注解同样是用来说明程序代码，只不过主要由计算机进行读取和理解<br>注解是一种代码级别的说明，在JDK1.5之后，与类、接口、枚举在同一层次，可以声明在包、类、成员变量、方法、局部变量、方法参数等之前，用来对这些元素解释说明；使用注解Annotation的方法：@Annotation</p>
+<p>注解主要有这些作用：</p>
+<ol>
+<li>编写文档：通过代码里标识的注解生成文档（使用javadoc命令，生成类的doc文档）</li>
+<li>代码分析：通过代码里标识的注解对代码进行分析（使用反射）</li>
+<li>编译检查：通过代码里标识的注解让编译器能够实现基本的编译检查</li>
+</ol>
+<p>【总结】<br>对于注解来说，需要了解的就是，在注释中使用注解，可以生成java doc文档，方便对类的阅读；此外JDK预定义了一些注解，比如@FunctionalInterface或者@Override等，可以在java程序被编译的时候，被编译检查看被注解的程序是否符合该注解的要求，如果不符合就不通过编译；最后，还可以自定义一些注解，并在自己的程序中进行使用</p>
+<h2 id="JDK预定义的内置注解"><a href="#JDK预定义的内置注解" class="headerlink" title="JDK预定义的内置注解"></a>JDK预定义的内置注解</h2><ol>
+<li>@Override：用来检测被该注解标注的方法是否是继承自父类的</li>
+<li>@Deprecated：将该注解标注的内容，表示已经过时（有更好的替代方法）</li>
+<li>@SuppressWarnings：压制警告</li>
+</ol>
+<p>以上三种就是JDK中预定义的常用注解,@Override就是为了表示该方法是对父类方法的重写；@ Deprecated就是表示当前方法已经过时了不建议使用（当然使用了也没关系，只不过会画一条横线）；@SuppressWarnings就是表示，可以无视所有的警告，一般在参数里加入”all”</p>
+<h2 id="自定义注解的格式和本质"><a href="#自定义注解的格式和本质" class="headerlink" title="自定义注解的格式和本质"></a>自定义注解的格式和本质</h2><p>为了自定义注解，首先要熟悉注解的格式，注解的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@元注解</span><br><span class="line">public @interface 注解名称 &#123; </span><br><span class="line">	属性列表 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么注解的本质是怎样的？首先定义一个注解，然后对注解文件（.java）首先进行javac编译，然后再进行javap反编译，就可以得到：<br><code>public interface MyAnno extends java.lang.annotation.Annotation {}</code><br>显然，注解的本质就是一个继承自<code>java.lang.annotation.Annotation</code>接口的接口，因此接口里能定义什么、注解里就能定义什么</p>
+<p>注解的属性：注解接口中定义的抽象成员方法</p>
+<h2 id="自定义注解的属性定义"><a href="#自定义注解的属性定义" class="headerlink" title="自定义注解的属性定义"></a>自定义注解的属性定义</h2><p>注解的属性就是接口中的抽象成员方法<br>要求：</p>
+<ol>
+<li>属性的返回值类型有限制，只能返回基本数据类型、String、枚举、注解、以及这些数据类型的数组；也就是说，一般自定义对象、void等其他常用类型都不可以返回</li>
+<li>定义属性之后，需要给属性赋值；如果定义属性时使用了default关键字，给属性默认初始值，则使用注解时可以不进行属性的赋值；如果只有一个属性需要赋值、并且属性的名称是value，则value可以省略、直接定义值即可；数组赋值时，使用{}包裹，如果数组中只有一个值，那么{}可以省略</li>
+</ol>
+<h2 id="自定义注解的元注解"><a href="#自定义注解的元注解" class="headerlink" title="自定义注解的元注解"></a>自定义注解的元注解</h2><p>元注解表示用于描述注解的注解，也就是在注解定义的接口之上所添加的注解，比如@Override注解定义的接口上，所添加的@Target和@Retention注解；这些元注解JDK预先定义好的<br>常见元注解：</p>
+<ol>
+<li>@Target：描述注解能够作用的位置<br>Target注解内部只有一个属性ElementType，它是一个Enum，有三个常用的取值：<ol>
+<li>TYPE：说明当前被Target元注解修饰的注解可以作用于类上</li>
+<li>METHOD：说明当前注解可以作用于方法上</li>
+<li>FIELD：说明可以作用于成员变量上</li>
+</ol>
+</li>
+<li>@Retention：描述注解被保留的一个阶段（java代码的三个阶段：源码、class、runtime）<br>对于计算机的三种阶段，一般来说JDK预定义的注解总是在编译时起作用，起到一个检查的作用；而自定义的注解，总是会希望在Runtime时起作用，因此总是有这样的注解<br>@Retention(RetentionPolicy.RUNTIME)</li>
+<li>@Documented：描述注解是否被抽取到api文档中（和javadoc有关）</li>
+<li>@Inherited：描述注解是否被子类继承</li>
+</ol>
+<h2 id="解析注解"><a href="#解析注解" class="headerlink" title="解析注解"></a>解析注解</h2><p>在了解了注解的格式、注解的属性、注解的使用方法后，就希望使用注解<br>在程序中解析、使用注解，主要是获取注解中定义的属性值<br>比如在使用反射技术编写框架类的时候，需要设置一个配置文件，然后在框架类中创造一个和配置文件绑定的输入流进行文件读取；通过注解，就可以把配置文件相关的信息放到注解接口当中，由于配置文件都是以键值对的形式出现的，这正好和注解的属性以及属性值相匹配<br>因此定义好注解之后，直接在框架类上添加标注注解，然后设置好属性值，比如：<br>@Pro(className=”……”, methodName=”………”)<br>以上的Pro就是自定义的注解，而className和methodName就是注解内部的属性</p>
+<p>设置完毕之后，就可以在框架类中获取到注解的属性和属性值了，也就是解析注解：</p>
+<ol>
+<li>首先获取该框架类的字节码文件对象</li>
+<li>获取添加的注解接口的对象，其实是在内存中直接生成了一个注解接口的实现类对象</li>
+<li>调用注解对象中定义的抽象方法，获取返回值</li>
+</ol>
+<p><strong>【注】</strong><br>对于第三部，调用注解对象的抽象方法获取返回值，其实就是调用注解接口中的属性列表；由于在添加注解的时候已经对属性赋了值，这里其实就是通过调用属性而获取到标注属性时的值而已，比如<br><code>@Pro(className=&quot;Person&quot;, methodName=&quot;eat&quot;)</code><br>对于以上这个注解，在框架类内部，就可以用pro.className()和pro.methodName()进行获取值，返回的String分别时Person和eat，而pro则是第二步中获取到的接口的实现类对象<br>在获取到className和methodName之后，就可以像之前一样去搭建框架类了</p>
+<p><strong>【总结】</strong></p>
+<ol>
+<li>获取注解定义的位置的对象（比如注解定义在类上就获取Class类对象，注解定义在方法上就获取Method类对象，注解定义在成员变量上就获取Field类对象）</li>
+<li>获取指定的注解，也就是对于第一步的位置的对象调用getAnnotation(Class)</li>
+<li>调用注解中的抽象方法，获取配置的属性值</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/25/My-First-Post/" data-id="ck884yfxr0000jxvdgu4h0vrz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/25/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/25/My-First-Post/">My First Post</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
